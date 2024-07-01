@@ -3,6 +3,7 @@ import { Router } from "express";
 import { Request, Response } from "express";
 import { makeControllerUser } from "../factories/makeControllerUser";
 import { makeControllerListUsers } from "../factories/makeControllerListUsers";
+import { makeControllerUserById } from "../factories/makeControllerUserById";
 const usersRoutes = Router();
 
 usersRoutes.post("/", (req: Request, res: Response)=>{
@@ -25,7 +26,9 @@ usersRoutes.delete("/:id", (req: Request, res: Response)=>{
 });
 
 usersRoutes.get("/:id", (req: Request, res: Response)=>{
-
+    const controller = makeControllerUserById();
+    const response = controller.execute({ id: req.params.id ?? ''})
+    res.status(200).json({...response})
 });
 
 
