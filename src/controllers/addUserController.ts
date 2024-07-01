@@ -14,7 +14,7 @@ export class AddUserController{
     constructor(private addUserUseCase: AddUserUseCase){}
 
     execute({ email, name }: RequestAddUserController): ResponseAddUserController{
-        const user = this.addUserUseCase.execute({email, name})
-        return {...user}
+        const {user}= this.addUserUseCase.execute({email, name})
+        return {user}
     }
 }

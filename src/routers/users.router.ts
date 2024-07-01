@@ -2,18 +2,22 @@
 import { Router } from "express";
 import { Request, Response } from "express";
 import { makeControllerUser } from "../factories/makeControllerUser";
+import { makeControllerListUsers } from "../factories/makeControllerListUsers";
 const usersRoutes = Router();
 
 usersRoutes.post("/", (req: Request, res: Response)=>{
     const controller = makeControllerUser();
-    return controller.execute({ 
+    const response = controller.execute({ 
         email: req.body.email ?? '', 
         name: req.body.name ?? ''
     })
+    res.status(201).json({...response})
 });
 
 usersRoutes.get("/", (req: Request, res: Response)=>{
-
+    const controller = makeControllerListUsers();
+    const response = controller.execute({})
+    res.status(200).json({...response})
 });
 
 usersRoutes.delete("/:id", (req: Request, res: Response)=>{
