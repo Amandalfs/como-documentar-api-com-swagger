@@ -1,3 +1,4 @@
+import { ErrorStatus } from "../@shared/error";
 import { User } from "../entities/user";
 import { IRepositoryUser } from "../repositories/interfaceRepository";
 
@@ -17,7 +18,7 @@ export class UserByIdUseCase {
         const user = this.UserRepository.findById(id)
 
         if(!user){
-            throw new Error("esse usuario não existe");
+            throw new ErrorStatus("esse usuario não existe", 422);
         }
 
         return {user}

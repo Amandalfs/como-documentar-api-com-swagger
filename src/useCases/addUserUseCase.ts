@@ -1,3 +1,4 @@
+import { ErrorStatus } from "../@shared/error";
 import { User } from "../entities/user";
 import { IRepositoryUser } from "../repositories/interfaceRepository";
 
@@ -19,7 +20,7 @@ export class AddUserUseCase {
         const alreadyEmail = this.UserRepository.findByEmail(email);
 
         if(alreadyEmail){
-            throw new Error("esse email ja existe");
+            throw new ErrorStatus("esse email ja existe", 403);
         }
 
         this.UserRepository.add(user)
