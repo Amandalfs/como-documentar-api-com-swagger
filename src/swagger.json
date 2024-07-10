@@ -1,0 +1,31 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "API Lista de usuarios",
+        "description": "A API de listar usuarios.",
+        "version": "4.0.0",
+        "termsOfService": "https://seusite.com/terms-of-service",
+        "contact": {
+          "name": "Amanda",
+          "email": "amandalfs57@gmail.com",
+          "url": "https://www.linkedin.com/in/amanda-rodrigues-dfbd/"
+        },
+        "license": {
+          "name": "Licença de Uso",
+          "url": "https://seusite.com/license"
+        }
+      },
+      "externalDocs": {
+        "description": "Documentação Adicional",
+        "url": "https://seusite.com/docs"
+    },
+    "components": {
+      "securitySchemes": {
+        "bearerAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      }
+    }
+}
