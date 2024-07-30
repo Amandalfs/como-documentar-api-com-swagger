@@ -27,5 +27,135 @@
           "bearerFormat": "JWT"
         }
       }
-    }
+    },
+    "paths": {
+        "/users": {
+          "get": {
+              "tags": ["usuarios"],
+              "description": "Lista de usuarios",
+              "summary": "Lista de usuarios",
+              "responses": {
+                "200": {
+                  "description": "Lista de usuarios cadastrados",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string"
+                            },
+                            "email": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+           },
+          "post": {
+            "tags": ["usuarios"],
+            "description": "Criacao de usuario",
+            "summary": "Criacao de usuario",
+            "requestBody": {
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties":{
+                      "name": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string"
+                      }
+                    },
+                    "example": {
+                      "name": "Example Name",
+                      "email": "example@example.com"
+                    }
+                  }
+                }
+              }
+            },
+            "responses": {
+              "201": {
+                "description": "usuario cadastrado"
+              }
+            }    
+          }
+        },
+        "/users/:{id}": {
+          "get": {
+            "tags": ["usuarios"],
+            "description": "Procurar usuario por identificador",
+            "summary": "Procurar usuario por identificador",
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "description": "Id do usuario",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                },
+                "example": "hjfbndfn445424"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Usuario encontrado",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "email": {
+                            "type": "string"
+                          }
+                        }
+                    }
+                  }
+                }
+              },
+              "404": {
+                "description": "esse usuario não existe"
+              }
+            }
+          },
+          "delete": {
+            "tags": ["usuarios"],
+            "description": "Excluir usuario",
+            "summary": "Acao de excluir usuario",
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "description": "Id do usuario",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                },
+                "example": "hjfbndfn445424"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Usuario excluido com sucesso"
+              },
+              "404": {
+                "description": "esse usuario não existe"
+              }
+            }
+          }
+        }
+  }
 }

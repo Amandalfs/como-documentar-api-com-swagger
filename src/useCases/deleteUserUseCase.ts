@@ -18,7 +18,7 @@ export class DeleteUserUseCase {
         const user = this.UserRepository.findById(id)
 
         if(!user){
-            throw new ErrorStatus("esse usuario não existe", 422);
+            throw new ErrorStatus("esse usuario não existe", 404);
         }
 
         this.UserRepository.remove(id)
